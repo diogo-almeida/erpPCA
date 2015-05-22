@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 erpPCA.Rproj
+.Rbuildignore
