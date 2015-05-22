@@ -7,11 +7,11 @@ Date: 2015-05-22
 Author: Diogo Almeida
 Maintainer: Diogo Almeida <diogo@nyu.edu>
 Description: his package implements the set of recommendations laid out by 
-  J\"{u}rgen Kayser and Craig E. Tenke on a series of publications (see references 
+  Jürgen Kayser and Craig E. Tenke on a series of publications (see references 
   below) on how to optimize the decomposition of Event-Related Potential (ERP)
   data into useful latent factors. These authors propose a PCA decomposition of
   an ERP data matrix based on its unstandardized covariance matrix, followed by
   a Varimax rotation of all of its principal components, in an attempt to find 
   simpler latent factors that may correspond to the event-related potentials 
   that researchers using EEG/MEG are interesting in measuring.
-License: GPL
+License: GPL-3

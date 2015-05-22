@@ -1,25 +1,30 @@
 #' @title Performs Varimax rotation of principal components or factors.
 #' 
-#' @description This function performs a Varimax rotation on factor loadings from an
-#' eigenvalue or singular value decomposition. According to the original
-#' MATLAB code by J\"{u}rgen Kayser, it ```emulates algorithms described by Harman
-#' (1967, pp. 304-308) as implemented in BMDP-4M (Dixon, 1992, pp. 602-603).'''
+#' @description This function performs a Varimax rotation on factor loadings 
+#' from an eigenvalue or singular value decomposition. According to the original
+#' MATLAB code by Jürgen Kayser, it ``emulates algorithms described by Harman
+#' (1967, pp. 304-308) as implemented in BMDP-4M (Dixon, 1992, pp. 602-603).''
 #' 
 #' @param X A matrix. Should be the loadings matrix from eigenvalue or 
 #'   singular value decomposition.
+#'   
 #' @param maxit Integer. Maximum number of iterations allowed before accepting
 #'  a solution to the rotation.
+#'  
 #' @param tol Convergence criterion.
+#' 
 #' @param normalize Logical scalar. Should Kaiser normalization be used? 
 #'   Defaults to TRUE.
+#'   
 #' @param verbose Logical scalar. Should text output on the attempted rotation 
 #'   be displayed? Defaults to FALSE.
 #'   
 #' @return List containing the rotated loadings (Y) and the history of 
 #'   attempted solutions for the rotation problem (G).
 #'   
-#' @seealso \code{\link[stats]{varimax}} and \code{\link[GPArotation]{Varimax}}
-#'   for other implementations of Varimax rotations.
+#' @seealso \code{\link[stats]{varimax}} from package \code{stats} and
+#'   \code{\link[GPArotation]{Varimax}} from package \code{GPArotation} for
+#'   other implementations of Varimax rotations.
 #'   
 #' @export
 #'   
