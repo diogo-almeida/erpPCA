@@ -9,15 +9,15 @@ DoVarimax4M(X, maxit = 100, tol = 1e-04, normalize = TRUE,
 }
 \arguments{
 \item{X}{A matrix. Should be the loadings matrix from eigenvalue or
-singular value decomposition.}
+  singular value decomposition.}
 
 \item{maxit}{Integer. Maximum number of iterations allowed before accepting
-a solution to the rotation.}
+ a solution to the rotation.}
 
 \item{tol}{Convergence criterion.}
 
 \item{normalize}{Logical scalar. Should Kaiser normalization be used?
-Defaults to TRUE.}
+  Defaults to TRUE.}
 
 \item{verbose}{Logical scalar. Should text output on the attempted rotation
   be displayed? Defaults to FALSE.}
@@ -27,10 +27,10 @@ List containing the rotated loadings (Y) and the history of
   attempted solutions for the rotation problem (G).
 }
 \description{
-This function performs a Varimax rotation on factor loadings from an
-eigenvalue or singular value decomposition. According to the original
-MATLAB code by J\"{u}rgen Kayser, it ```emulates algorithms described by Harman
-(1967, pp. 304-308) as implemented in BMDP-4M (Dixon, 1992, pp. 602-603).'''
+This function performs a Varimax rotation on factor loadings
+from an eigenvalue or singular value decomposition. According to the original
+MATLAB code by Jurgen Kayser, it ``emulates algorithms described by Harman
+(1967, pp. 304-308) as implemented in BMDP-4M (Dixon, 1992, pp. 602-603).''
 }
 \examples{
 ## from the help of stats::varimax, using factor analysis
@@ -44,7 +44,8 @@ stats::varimax(iris.pca$rotation)
 DoVarimax4M(iris.pca$rotation)$Y
 }
 \seealso{
-\code{\link[stats]{varimax}} and \code{\link[GPArotation]{Varimax}}
-  for other implementations of Varimax rotations.
+\code{\link[stats]{varimax}} from package \code{stats} and
+  \code{\link[GPArotation]{Varimax}} from package \code{GPArotation} for
+  other implementations of Varimax rotations.
 }
 

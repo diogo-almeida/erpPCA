@@ -8,7 +8,7 @@
 #' 
 #' @details This workflow of matrix decomposition followed by Varimax rotation 
 #'   has been advocated for electrophysiological studies on humans using the 
-#'   Event-Related Potential (ERP) technique by Jürgen Kayser and Craig E. 
+#'   Event-Related Potential (ERP) technique by Jurgen Kayser and Craig E. 
 #'   Tenke. These authors suggest that very good results can be obtained by
 #'   using (1) unstandardized covariance matrices of the original data matrix
 #'   followed by (2) a Varimax rotation of all of the principal components (what
@@ -16,7 +16,7 @@
 #'   series of papers (see references below)
 #'  
 #' This function is a R port of the original MATLAB function erpPCA.m created
-#' by Jürgen Kayser. According to the original documentation, it implements
+#' by Jurgen Kayser. According to the original documentation, it implements
 #' ``the PCA agorithms used by BMDP-4M (Dixon, 1992) and SPSS 10.0 FACTOR''. The
 #' original MATLAB code can be freely downloaded at 
 #' \url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}

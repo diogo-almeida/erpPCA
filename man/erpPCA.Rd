@@ -2,8 +2,8 @@
 % Please edit documentation in R/erpPCA.R
 \name{erpPCA}
 \alias{erpPCA}
-\title{Performs unrestricted, unstandardized covariance-based PCA with Varimax
-rotation (cf. Kayser J, Tenke CE, Clin Neurophysiol, 2003, 114:2307-25)}
+\title{Performs unrestricted, unstandardized covariance-based PCA followed by
+  Varimax rotation}
 \source{
 \url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}
 }
@@ -26,6 +26,17 @@ This function returns a list containing the unrotated principal
   factors in a cases-by-factors matrix. It also outputs the Eingenvalues
   of the covariance matrix and the their explained variance before and after
   rotation.
+
+\item{Unrotated}{Matrix containing the unrotated principal components
+loadings.}
+
+\item{Rotated}{Matrix containing the varimax rotated factor loadings}
+
+\item{Factor.Scores}{Matrix containing the factor scores of the varimax
+rotated factor loadings.}
+
+\item{Variance}{Matrix containing the Eigenvalues and explained variance
+before and afte rotation.}
 }
 \description{
 This function implements a PCA decomposition of a data matrix
@@ -35,19 +46,19 @@ factors.
 }
 \details{
 This workflow of matrix decomposition followed by Varimax rotation
-has been advocated for electrophysiological studies on humans using the
-Event-Related Potential (ERP) technique by J\"{u}rgen Kayser and Craig E.
-Tenke. These authors suggest that very good results can be obtained by using
-(1) unstandardized covariance matrices of the original data matrix followed
-by (2) a Varimax rotation of all of the principal components (what they call
-an ``unrestricted'' rotation). The arguments are laid out in a series of
-papers (see references below)
+  has been advocated for electrophysiological studies on humans using the
+  Event-Related Potential (ERP) technique by Jurgen Kayser and Craig E.
+  Tenke. These authors suggest that very good results can be obtained by
+  using (1) unstandardized covariance matrices of the original data matrix
+  followed by (2) a Varimax rotation of all of the principal components (what
+  they call an ``unrestricted'' rotation). The arguments are laid out in a
+  series of papers (see references below)
 
-This is function is a R port of the original MATLAB function erpPCA.m created
-by J\"{u}rgen Kayser. According to the original documentation, it implements
+This function is a R port of the original MATLAB function erpPCA.m created
+by Jurgen Kayser. According to the original documentation, it implements
 ``the PCA agorithms used by BMDP-4M (Dixon, 1992) and SPSS 10.0 FACTOR''. The
 original MATLAB code can be freely downloaded at
-http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html
+\url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}
 }
 \examples{
 ## using the iris dataset and principal components analysis
@@ -68,7 +79,7 @@ Kayser, J., & Tenke, C. E. (2006). Consensus on PCA for ERP data,
 }
 \seealso{
 \code{\link[stats]{princomp}}, \code{\link[stats]{prcomp}},
-  \code{\link[stats]{factanal}} for other basic implementations of principal
-  component analysis and factor analysis.
+  \code{\link[stats]{factanal}} from package \code{stats} for other basic
+  implementations of principal component analysis and factor analysis.
 }
 

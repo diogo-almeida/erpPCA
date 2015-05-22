@@ -2,7 +2,7 @@
 #' rotation for Event-Related Potentials (ERPs).
 #' 
 #' @description This package implements the set of recommendations laid out by
-#' Jürgen Kayser and Craig E. Tenke on a series of publications (see references 
+#' Jurgen Kayser and Craig E. Tenke on a series of publications (see references 
 #' below) on how to optimize the decomposition of Event-Related Potential (ERP)
 #' data into useful latent factors. These authors propose a PCA decomposition of
 #' an ERP data matrix based on its unstandardized covariance matrix, followed by
@@ -28,7 +28,7 @@
 #'   and sensibility of unrestricted solutions. Clinical Neurophysiology, 
 #'   117(3), 703-707.
 #'   
-#' @source This package is a port of original MATLAB functions created by Jürgen
+#' @source This package is a port of original MATLAB functions created by Jurgen
 #'   Kayser, which can be freely downloaded from 
 #'   \url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}
 #'   

@@ -2,7 +2,7 @@
 #' 
 #' @description This function performs a Varimax rotation on factor loadings 
 #' from an eigenvalue or singular value decomposition. According to the original
-#' MATLAB code by Jürgen Kayser, it ``emulates algorithms described by Harman
+#' MATLAB code by Jurgen Kayser, it ``emulates algorithms described by Harman
 #' (1967, pp. 304-308) as implemented in BMDP-4M (Dixon, 1992, pp. 602-603).''
 #' 
 #' @param X A matrix. Should be the loadings matrix from eigenvalue or 
