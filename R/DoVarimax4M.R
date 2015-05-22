@@ -21,6 +21,8 @@
 #' @seealso \code{\link[stats]{varimax}} and \code{\link[GPArotation]{Varimax}}
 #'   for other implementations of Varimax rotations.
 #'   
+#' @export
+#'   
 #' @examples
 #' ## from the help of stats::varimax, using factor analysis
 #' fa <- factanal( ~., 2, data = swiss)
