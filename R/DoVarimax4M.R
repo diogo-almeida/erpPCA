@@ -9,9 +9,9 @@
 #'   singular value decomposition.
 #'   
 #' @param maxit Integer. Maximum number of iterations allowed before accepting
-#'  a solution to the rotation.
+#'  a solution to the rotation. Defaults to 100 iterations.
 #'  
-#' @param tol Convergence criterion.
+#' @param tol Convergence criterion. Defaults to 0.0001.
 #' 
 #' @param normalize Logical scalar. Should Kaiser normalization be used? 
 #'   Defaults to TRUE.
@@ -19,8 +19,9 @@
 #' @param verbose Logical scalar. Should text output on the attempted rotation 
 #'   be displayed? Defaults to FALSE.
 #'   
-#' @return List containing the rotated loadings (Y) and the history of 
-#'   attempted solutions for the rotation problem (G).
+#' @return List containing 
+#' \item{Y}{A matrix. Rotated loadings from \code{X}.}
+#' \item{G}{A matrix. History of attempted solutions for the rotation problem.}
 #'   
 #' @seealso \code{\link[stats]{varimax}} from package \code{stats} and
 #'   \code{\link[GPArotation]{Varimax}} from package \code{GPArotation} for
@@ -38,7 +39,7 @@
 #' iris.pca <- prcomp(iris[, 1:4])
 #' stats::varimax(iris.pca$rotation)
 #' DoVarimax4M(iris.pca$rotation)$Y
-DoVarimax4M <- function(X, maxit = 100, tol = 1e-4, normalize = TRUE, 
+DoVarimax4M <- function(X, maxit = 100L, tol = 1e-4, normalize = TRUE, 
                         verbose = FALSE) {
   
   # Auxiliary function definitions

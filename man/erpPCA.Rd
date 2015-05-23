@@ -82,7 +82,7 @@ original MATLAB code can be freely downloaded at
 erpPCA(iris[, 2:4])
 
 ## Using the tutorial dataset from Dien and Frishkoff (2005)
-X <- erpPCA::dien2005[, 3:8]
+X <- dien2005[, 3:8]
 
 ## Matrix decomposition methods (eigen and svd) should give identical results
 ## no matter what the matrix rank estimation method is used.

@@ -21,26 +21,29 @@
 #' original MATLAB code can be freely downloaded at 
 #' \url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}
 #' 
+#' @section Temporal vs Spatial PCA:
+#' For a temporal decomposition (ie., latent factors will correspond to time
+#' courses), the matrix \code{X} should be organized with ERP waveforms of each
+#' sensor in rows (cases) and time samples in columns (variables). For spatial
+#' decomposition (ie., latent factors will correspond to scalp topographies),
+#' the matrix \code{X} should be organized with time samples in rows (cases) and
+#' sensors in columns (variables).
+#' 
 #' @param X A matrix. This is the data matrix to be decomposed into its
-#'   principal components. For a temporal decomposition (ie., latent factors
-#'   will correspond to time courses), the matrix should be organized
-#'   with ERP waveforms of each sensor in rows (cases) and time samples in 
-#'   columns (variables). For spatial decomposition (ie., latent factors
-#'   will correspond to scalp topographies), the matrix should be organized
-#'   with time samples in rows (cases) and sensors in columns (variables).
+#'   principal components.
 #'   
 #' @param method A string. Method to use for finding principal components of
 #'   data matrix. Default is \code{eigen} to match the original MATLAB function,
 #'   but \code{svd} is generally recommended for numerical accuracy. Both should
 #'   give the same results.
 #'   
-#' @param rank.method A string. Method to use to estimate the rank of the
-#'   principal component matrix. Default is \code{original}, to match the
-#'   original MATLAB function. \code{qr} may be more computationally efficient,
-#'   but will give different results from the original method.
+#' @param rank.method A string. Method to use to estimate the rank of the 
+#'   principal component matrix. Default is \code{original}, to match the 
+#'   original MATLAB function. Option \code{qr} may be more computationally
+#'   efficient, but will give different results from the original method.
 #'   
 #' @param rotation.fun A string. Function to use for Varimax rotation. Default
-#'   is \code{original}, which calls the function DoVarimax4M from this package,
+#'   is \code{original}, which calls the function \code{\link{DoVarimax4M}} from this package,
 #'   to match the original MATLAB function. Option \code{R} will call the base
 #'   function \code{varimax}. The outputs of these choices will probably be
 #'   numerically different.

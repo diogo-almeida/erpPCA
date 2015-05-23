@@ -18,7 +18,7 @@
 #'
 #' @references Kayser, J., & Tenke, C. E. (2003). Optimizing PCA methodology for
 #'   ERP component identification and measurement: theoretical rationale and 
-#'   empirical evaluation. Clinical neurophysiology, 114(12), 2307-2325.
+#'   empirical evaluation. Clinical Neurophysiology, 114(12), 2307-2325.
 #'   
 #' @references Kayser, J., & Tenke, C. E. (2005). Trusting in or breaking with 
 #'   convention: towards a renaissance of principal components analysis in 
@@ -28,9 +28,10 @@
 #'   and sensibility of unrestricted solutions. Clinical Neurophysiology, 
 #'   117(3), 703-707.
 #'   
-#' @source This package is a port of original MATLAB functions created by Jurgen
-#'   Kayser, which can be freely downloaded from 
+#' @source This package is a port of the original MATLAB functions created by
+#'   Jurgen Kayser, which can be freely downloaded from 
 #'   \url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}
+#'   
 #'   
 #'
 #' @name erpPCA-package
@@ -38,10 +39,12 @@
 #' @author Diogo Almeida \email{diogo@@nyu.edu}
 #' @keywords package
 NULL
-#' @title Data from tutorial on PCA applications to Event-Related Potentials data by Dien and Frishkoff.
-#'
-#' @description This dataset is used by Dien and Frishkoff on their book chapter ``Principal Components 
-#'   Analysis of ERP Data'' (see reference below) for a step by step tutorial.
+#' @title Data from tutorial on PCA applications to Event-Related Potentials
+#'   data by Dien and Frishkoff.
+#'   
+#' @description This dataset is used by Dien and Frishkoff on their book chapter
+#'   ``Principal Components Analysis of ERP Data'' (see reference below) in
+#'   their a step by step tutorial.
 #' 
 #' @name dien2005
 #' @docType data
