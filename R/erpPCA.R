@@ -72,7 +72,9 @@
 #' ## using the iris dataset and principal components analysis
 #' erpPCA(iris[, 2:4])
 #'
-erpPCA <- function(X) {
+erpPCA <- function(X, method = c("eigen", "svd"), 
+                   rank.method = c("original", "qr"), 
+                   rotation.fun = c("original", "R")) {
 ##############
 # Port the erpPCA.m file from Kayser & Tenke 2003 to R
 # Diogo Almeida - 6/21/12
@@ -95,22 +97,49 @@ erpPCA <- function(X) {
       cat("Your data is now a matrix!\n")
     }
   }
-  
+  if ((method != "eigen") && (method != "svd")) {
+    warning("Unrecognized method. It has to be either `eigen' or `svd'.\nThe function will default to `eigen'.\nPlease check your code.")
+    method = "eigen"
+  }
+  if ((rank.method != "original") && (rank.method != "qr")) {
+    warning("Unrecognized rank.method. It has to be either `original' or `qr'.\nThe function will default to `original'.\nPlease check your code.")
+    rank.method = "original"
+  }
+  if ((rotation.fun != "original") && (rotation.fun != "R")) {
+    warning("Unrecognized rotation function. It has to be either `original' or `R'.\nThe function will default to `original'.\nPlease check your code.")
+    rotation.fun = "original"
+  }
+
   # Calculates the Principal Components
   # The original MATLAB function uses eigen, but we can also use svd
   # 
   # prcomp
-  D <- cov(X)
-  eigenD <- eigen(D)
-  EM <- eigenD$vectors
-  EV <- eigenD$values
-  UL <- EM %*% sqrt(diag(EV))
+  if (method == "eigen") {
+    D <- cov(X)
+    eigenD <- eigen(D)
+    EM <- eigenD$vectors
+    EV <- eigenD$values
+    UL <- EM %*% sqrt(diag(EV))    
+  } else {
+    # method is svd
+    svd.X <- prcomp(X, center = T, scale = F)
+    EM <- svd.X$rotation
+    EV <- svd.X$sdev^2
+    UL <- EM %*% diag(svd.X$sdev)
+  }
 
   # Estimate the number of singular values
   # this is effectively estimating the matrix rank of the correlation matrix
   # The original MATLAB function uses the svd decomposition with a tol value of
   # 1e-4.
-  rk <- sum(svd(cor(X))$d > 1e-4)
+  if (rank.method == "original") {
+    rk <- sum(svd(cor(X))$d > 1e-4)    
+  } else {
+    # rank.method is 'qr'
+    # This may give different results, but is potentially more computationally
+    # efficient.
+    rk <- qr(cor(X), tol = 1e-4)$rank
+  }
 
   # Remove the linearly dependent factors and their indices
   u <- sort(EV, decreasing = T)[1:rk]
@@ -122,7 +151,13 @@ erpPCA <- function(X) {
   LU <- LU * repmat(s, dim(LU)[1], 1)
 
   # Rotate the linearly independent principal components
-  RL <- DoVarimax4M(LU)$Y
+  switch(rotation.fun,
+    original = {RL <- DoVarimax4M(LU)$Y},
+    R = {RL <- varimax(LU)$loadings},
+    stop("`rotation.fun' not recognized")
+  )
+
+  # Sort rotated eigen values in descending order
   EVr <- colSums(RL * RL)
   r   <- sort(EVr, decreasing = T)
   rx  <- order(EVr, decreasing = T)
