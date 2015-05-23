@@ -29,6 +29,22 @@
 #'   will correspond to scalp topographies), the matrix should be organized
 #'   with time samples in rows (cases) and sensors in columns (variables).
 #'   
+#' @param method A string. Method to use for finding principal components of
+#'   data matrix. Default is \code{eigen} to match the original MATLAB function,
+#'   but \code{svd} is generally recommended for numerical accuracy. Both should
+#'   give the same results.
+#'   
+#' @param rank.method A string. Method to use to estimate the rank of the
+#'   principal component matrix. Default is \code{original}, to match the
+#'   original MATLAB function. \code{qr} may be more computationally efficient,
+#'   but will give different results from the original method.
+#'   
+#' @param rotation.fun A string. Function to use for Varimax rotation. Default
+#'   is \code{original}, which calls the function DoVarimax4M from this package,
+#'   to match the original MATLAB function. Option \code{R} will call the base
+#'   function \code{varimax}. The outputs of these choices will probably be
+#'   numerically different.
+#'   
 #' @return This function returns a list containing the unrotated principal
 #'   component loadings, the Varimax rotated factor loadings in a 
 #'   variables-by-factors matrix, the factor scores obtained for the rotated
@@ -72,11 +88,28 @@
 #' ## using the iris dataset and principal components analysis
 #' erpPCA(iris[, 2:4])
 #'
-#' A <- erpPCA(dien2005[, 3:8], method = "eigen", rank.method = "original", rotation.fun = "original")
-#' B <- erpPCA(dien2005[, 3:8], method = "svd", rank.method = "original", rotation.fun = "original")
-#' C <- erpPCA(dien2005[, 3:8], method = "eigen", rank.method = "qr", rotation.fun = "original")
-#' D <- erpPCA(dien2005[, 3:8], method = "svd", rank.method = "qr", rotation.fun = "original")
-#' E <- erpPCA(dien2005[, 3:8], method = "svd", rank.method = "original", rotation.fun = "R")
+#' ## Using the tutorial dataset from Dien and Frishkoff (2005)
+#' X <- dien2005[, 3:8]
+#' 
+#' ## Matrix decomposition methods (eigen and svd) should give identical results
+#' ## no matter what the matrix rank estimation method is used.
+#' A <- erpPCA(X, method = "eigen", rank.method = "original", 
+#'   rotation.fun = "original")
+#' B <- erpPCA(X, method = "svd", rank.method = "original", 
+#'   rotation.fun = "original")
+#' all.equal(A, B, check.attributes = FALSE) 
+#' 
+#' C <- erpPCA(X, method = "eigen", rank.method = "qr", 
+#'   rotation.fun = "original")
+#' D <- erpPCA(X, method = "svd", rank.method = "qr", rotation.fun = "original")
+#' all.equal(C, D, check.attributes = FALSE)
+#' 
+#' ## The varimax rotation options will give numerically different results, 
+#' ## however. The magnitude of this difference needs to be gauged on a case
+#' ## by case basis.
+#' E <- erpPCA(X, method = "svd", rank.method = "original", rotation.fun = "R")
+#' all.equal(B, E, check.attributes = FALSE)
+#' 
 erpPCA <- function(X, method = c("eigen", "svd"), 
                    rank.method = c("original", "qr"), 
                    rotation.fun = c("original", "R")) {
@@ -102,6 +135,18 @@ erpPCA <- function(X, method = c("eigen", "svd"),
       cat("Your data is now a matrix!\n")
     }
   }
+  # Tests to see if function was called without explicitly selecting arguments
+  # Introduces the original defaults.
+  if (length(method) > 1){  # user forgot to choose method explicitly
+    method <- "eigen"
+  }
+  if (length(rank.method) > 1){  # user forgot to choose rank.method explicitly
+    rank.method <- "original"
+  }
+  if (length(rotation.fun) > 1){  # user forgot to choose rotation.fun
+    rotation.fun <- "original"
+  }
+
   if ((method != "eigen") && (method != "svd")) {
     warning("Unrecognized method. It has to be either `eigen' or `svd'.\nThe function will default to `eigen'.\nPlease check your code.")
     method = "eigen"
@@ -136,7 +181,7 @@ erpPCA <- function(X, method = c("eigen", "svd"),
   # this is effectively estimating the matrix rank of the correlation matrix
   # The original MATLAB function uses the svd decomposition with a tol value of
   # 1e-4.
-  # Package Matrix has function rankMatrix, which provides several options.
+  # Package Matrix has function rankMatrix, providing several other options.
   if (rank.method == "original") {
     rk <- sum(svd(cor(X))$d > 1e-4)    
   } else {
