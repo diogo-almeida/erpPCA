@@ -95,34 +95,59 @@ erpPCA <- function(X) {
       cat("Your data is now a matrix!\n")
     }
   }
-    
+  
+  # Calculates the Principal Components
+  # The original MATLAB function uses eigen, but we can also use svd
+  # 
+  # prcomp
   D <- cov(X)
   eigenD <- eigen(D)
   EM <- eigenD$vectors
   EV <- eigenD$values
-  UL <- EM %*% sqrt(diag(EV))                  # svd(X)$v gives different values
+  UL <- EM %*% sqrt(diag(EV))
+
+  # Estimate the number of singular values
+  # this is effectively estimating the matrix rank of the correlation matrix
+  # The original MATLAB function uses the svd decomposition with a tol value of
+  # 1e-4.
   rk <- sum(svd(cor(X))$d > 1e-4)
+
+  # Remove the linearly dependent factors and their indices
   u <- sort(EV, decreasing = T)[1:rk]
   LU <- UL[, 1:rk]
+  
+  # Determine direction of principal components and redirect them if negative
   s <- matrix(1, ncol = rk)
   s[abs(apply(LU, 2, max)) < abs(apply(LU, 2, min))] <- -1
   LU <- LU * repmat(s, dim(LU)[1], 1)
+
+  # Rotate the linearly independent principal components
   RL <- DoVarimax4M(LU)$Y
   EVr <- colSums(RL * RL)
   r   <- sort(EVr, decreasing = T)
   rx  <- order(EVr, decreasing = T)
   LR  <-  RL[, rx]
+
+  # Determine direction of rotated factors and redirect them if negative
   s <- matrix(1, ncol =  ncol(LR))
   s[abs(apply(LR, 2, max)) < abs(apply(LR, 2, min))] <- -1
   LR <- LR * repmat(s, ncol(X), 1) 
+
+  # Compute total variances
   tv <- sum(EV)
+
+  # Create table of explained variances for unrotated and rotated components
   VT <- matrix(c(u, (100 * u) / tv, r, (100 * r) / tv), byrow = F, 
                nrow = length(u))
+
+  # Compute the rotated factor scores coefficients
   FSCFr <- LR %*% solve(t(LR) %*% LR)
   FSCFr <- FSCFr * repmat(sqrt(diag(D)), 1, rk) 
   mu <- apply(X, 2, mean)
   sigma <- apply(X, 2, sd)
   Xc <- sweep(X, 2, mu)
+
+  # Compute the rotated factor scores from normalized raw data
   FSr = matrix(0, nrow = nrow(X), ncol = ncol(X))
   for (n in 1:nrow(X)) {
     for (m in 1:rk) {
