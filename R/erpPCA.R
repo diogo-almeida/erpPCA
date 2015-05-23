@@ -72,6 +72,11 @@
 #' ## using the iris dataset and principal components analysis
 #' erpPCA(iris[, 2:4])
 #'
+#' A <- erpPCA(dien2005[, 3:8], method = "eigen", rank.method = "original", rotation.fun = "original")
+#' B <- erpPCA(dien2005[, 3:8], method = "svd", rank.method = "original", rotation.fun = "original")
+#' C <- erpPCA(dien2005[, 3:8], method = "eigen", rank.method = "qr", rotation.fun = "original")
+#' D <- erpPCA(dien2005[, 3:8], method = "svd", rank.method = "qr", rotation.fun = "original")
+#' E <- erpPCA(dien2005[, 3:8], method = "svd", rank.method = "original", rotation.fun = "R")
 erpPCA <- function(X, method = c("eigen", "svd"), 
                    rank.method = c("original", "qr"), 
                    rotation.fun = c("original", "R")) {
@@ -113,9 +118,8 @@ erpPCA <- function(X, method = c("eigen", "svd"),
   # Calculates the Principal Components
   # The original MATLAB function uses eigen, but we can also use svd
   # 
-  # prcomp
+  D <- cov(X)
   if (method == "eigen") {
-    D <- cov(X)
     eigenD <- eigen(D)
     EM <- eigenD$vectors
     EV <- eigenD$values
@@ -132,6 +136,7 @@ erpPCA <- function(X, method = c("eigen", "svd"),
   # this is effectively estimating the matrix rank of the correlation matrix
   # The original MATLAB function uses the svd decomposition with a tol value of
   # 1e-4.
+  # Package Matrix has function rankMatrix, which provides several options.
   if (rank.method == "original") {
     rk <- sum(svd(cor(X))$d > 1e-4)    
   } else {
@@ -153,7 +158,7 @@ erpPCA <- function(X, method = c("eigen", "svd"),
   # Rotate the linearly independent principal components
   switch(rotation.fun,
     original = {RL <- DoVarimax4M(LU)$Y},
-    R = {RL <- varimax(LU)$loadings},
+    R = {RL <- varimax(LU, normalize = TRUE)$loadings},
     stop("`rotation.fun' not recognized")
   )
 
@@ -177,7 +182,7 @@ erpPCA <- function(X, method = c("eigen", "svd"),
 
   # Compute the rotated factor scores coefficients
   FSCFr <- LR %*% solve(t(LR) %*% LR)
-  FSCFr <- FSCFr * repmat(sqrt(diag(D)), 1, rk) 
+  FSCFr <- FSCFr * repmat(sqrt(diag(D)), 1, rk) # Requires the covariance matrix
   mu <- apply(X, 2, mean)
   sigma <- apply(X, 2, sd)
   Xc <- sweep(X, 2, mu)
