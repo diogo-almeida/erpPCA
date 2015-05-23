@@ -40,8 +40,8 @@
 NULL
 #' @title Data from tutorial on PCA applications to Event-Related Potentials data by Dien and Frishkoff.
 #'
-#' @description This dataset is used by Dien and Frishkoff on their book chapter \italic{Principal Components 
-#'   Analysis of ERP Data} for a step by step tutorial.
+#' @description This dataset is used by Dien and Frishkoff on their book chapter ``Principal Components 
+#'   Analysis of ERP Data'' (see reference below) for a step by step tutorial.
 #' 
 #' @name dien2005
 #' @docType data
