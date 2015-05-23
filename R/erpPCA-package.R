@@ -38,3 +38,24 @@
 #' @author Diogo Almeida \email{diogo@@nyu.edu}
 #' @keywords package
 NULL
+#' @title Data from tutorial on PCA applications to Event-Related Potentials data by Dien and Frishkoff.
+#'
+#' @description This dataset is used by Dien and Frishkoff on their book chapter \italic{Principal Components 
+#'   Analysis of ERP Data} for a step by step tutorial.
+#' 
+#' @name dien2005
+#' @docType data
+#' @usage dien2005
+#' @format A data frame with 10 columns and 20 rows
+#' @section Variables:
+#'
+#' \itemize{ 
+#' \item \code{Ss}: Subject codes.
+#' \item \code{Cs}: Condition codes. 
+#' \item \code{t1-t6}: Time samples 1 to 6.
+#' }
+#'
+#' @references Dien, J., & Frishkoff, C. A. (2005). Principal Components 
+#'   Analysis of ERP Data. In Handy, T. (Ed.) Event-related Potentials: A
+#'   Methods Handbook (pp. 189-207). Cambridge, MA: MIT Press.
+NULL
