@@ -3,14 +3,16 @@
 \docType{data}
 \name{dien2005}
 \alias{dien2005}
-\title{Data from tutorial on PCA applications to Event-Related Potentials data by Dien and Frishkoff.}
+\title{Data from tutorial on PCA applications to Event-Related Potentials
+  data by Dien and Frishkoff.}
 \format{A data frame with 10 columns and 20 rows}
 \usage{
 dien2005
 }
 \description{
-This dataset is used by Dien and Frishkoff on their book chapter ``Principal Components
-  Analysis of ERP Data'' (see reference below) for a step by step tutorial.
+This dataset is used by Dien and Frishkoff on their book chapter
+  ``Principal Components Analysis of ERP Data'' (see reference below) in
+  their a step by step tutorial.
 }
 \section{Variables}{
 

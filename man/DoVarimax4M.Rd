@@ -4,7 +4,7 @@
 \alias{DoVarimax4M}
 \title{Performs Varimax rotation of principal components or factors.}
 \usage{
-DoVarimax4M(X, maxit = 100, tol = 1e-04, normalize = TRUE,
+DoVarimax4M(X, maxit = 100L, tol = 1e-04, normalize = TRUE,
   verbose = FALSE)
 }
 \arguments{
@@ -12,9 +12,9 @@ DoVarimax4M(X, maxit = 100, tol = 1e-04, normalize = TRUE,
   singular value decomposition.}
 
 \item{maxit}{Integer. Maximum number of iterations allowed before accepting
- a solution to the rotation.}
+ a solution to the rotation. Defaults to 100 iterations.}
 
-\item{tol}{Convergence criterion.}
+\item{tol}{Convergence criterion. Defaults to 0.0001.}
 
 \item{normalize}{Logical scalar. Should Kaiser normalization be used?
   Defaults to TRUE.}
@@ -23,8 +23,9 @@ DoVarimax4M(X, maxit = 100, tol = 1e-04, normalize = TRUE,
   be displayed? Defaults to FALSE.}
 }
 \value{
-List containing the rotated loadings (Y) and the history of
-  attempted solutions for the rotation problem (G).
+List containing
+\item{Y}{A matrix. Rotated loadings from \code{X}.}
+\item{G}{A matrix. History of attempted solutions for the rotation problem.}
 }
 \description{
 This function performs a Varimax rotation on factor loadings

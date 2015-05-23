@@ -5,7 +5,7 @@ Title: Unrestricted, unstandardized covariance-based PCA with Varimax rotation
 Version: 1.0
 Date: 2015-05-22
 Author: Diogo Almeida
-Maintainer: Diogo Almeida <dalazal@gmail.com>
+Maintainer: Diogo Almeida <diogo@nyu.edu>
 Description: This package implements the set of recommendations laid out by 
   Jurgen Kayser and Craig E. Tenke on a series of publications (see references 
   in manual) on how to optimize the decomposition of Event-Related Potential 

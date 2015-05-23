@@ -6,8 +6,8 @@
 \title{Unrestricted, unstandardized covariance-based PCA with Varimax
 rotation for Event-Related Potentials (ERPs).}
 \source{
-This package is a port of original MATLAB functions created by Jurgen
-  Kayser, which can be freely downloaded from
+This package is a port of the original MATLAB functions created by
+  Jurgen Kayser, which can be freely downloaded from
   \url{http://psychophysiology.cpmc.columbia.edu/mmedia/Kayser2003a/Appendix.html}
 }
 \description{
@@ -32,7 +32,7 @@ Diogo Almeida \email{diogo@nyu.edu}
 \references{
 Kayser, J., & Tenke, C. E. (2003). Optimizing PCA methodology for
   ERP component identification and measurement: theoretical rationale and
-  empirical evaluation. Clinical neurophysiology, 114(12), 2307-2325.
+  empirical evaluation. Clinical Neurophysiology, 114(12), 2307-2325.
 
 Kayser, J., & Tenke, C. E. (2005). Trusting in or breaking with
   convention: towards a renaissance of principal components analysis in
