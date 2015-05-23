@@ -4,7 +4,7 @@ R port of MATLAB functions erpPCA.m and others created by Jürgen Kayser. The or
 
 ## Scope
 
-This package implements only the PCA + Varimax rotation workflow advocated by Kayser and Tenke (2003, 2005, 2006) for Event-Related Potential (ERP) data, and is not a general approach to PCA nor to factor analysis.
+This package implements only the PCA + Varimax rotation workflow advocated by Kayser and Tenke (2003, 2005, 2006) for Event-Related Potential (ERP) data, and is *not* a general approach to PCA nor to factor analysis.
 
 A more flexible factor analysis approach to ERP data can be found in the ERP PCA Toolkit by Joseph Dien (Dien, 2010a), which is available only in MATLAB. Perhaps a future version of this package will implement some aspects of this more flexible approach, namely:
 
