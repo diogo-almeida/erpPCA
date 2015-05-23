@@ -16,3 +16,4 @@ Description: his package implements the set of recommendations laid out by
   that researchers using EEG/MEG are interesting in measuring.
 Depends: R (>= 2.10)
 License: GPL-3
+LazyData: true
